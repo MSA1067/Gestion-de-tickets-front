@@ -1,0 +1,32 @@
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.login-background {
+  background-image: url("/assets/img/iushUniversity.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-width{
+  width: 20rem;
+}
+
+.text-color{
+  color: #00386d !important;
+}
+
+.text-color:hover{
+  color: #00284e;
+}
+
+.p-button{
+  background: #00386d !important;
+}

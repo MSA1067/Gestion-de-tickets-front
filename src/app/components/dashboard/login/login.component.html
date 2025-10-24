@@ -1,0 +1,77 @@
+<div class="login-background">
+  <p-toast/>
+  <div class="flex justify-center items-center min-h-screen">
+    <p-card [style]="{ width: '28rem', overflow: 'hidden' }" class="shadow-lg p-6 rounded-xl relative">
+
+      <ng-template pTemplate="header">
+        <div class="flex justify-center mb-4 mt-4">
+          <img alt="Logo" class="img-width h-auto" src="assets/img/logoIush.png"/>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="title">
+        <h2 class="text-center text-2xl font-semibold mb-6">
+          {{ isForgotPassword ? 'Recuperar contraseña' : 'Iniciar sesión' }}
+        </h2>
+      </ng-template>
+
+      <div *ngIf="!isForgotPassword" class="space-y-6">
+        <p-floatlabel class="w-full" variant="on">
+          <p-iconfield>
+            <p-inputicon class="pi pi-user"/>
+            <input autocomplete="off" class="w-full text-lg py-3" id="username" pInputText/>
+          </p-iconfield>
+          <label for="username">Usuario</label>
+        </p-floatlabel>
+
+        <p-floatlabel class="w-full" variant="on">
+          <p-iconfield>
+            <p-inputicon class="pi pi-lock"/>
+            <input autocomplete="off" class="w-full text-lg py-3" id="password" pInputText type="password"/>
+          </p-iconfield>
+          <label for="password">Contraseña</label>
+        </p-floatlabel>
+
+        <div class="text-right mb-0">
+          <a (click)="toggleForgotPassword()"
+             class="text-color text-sm font-medium transition-colors duration-200 cursor-pointer">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+      </div>
+
+      <div *ngIf="isForgotPassword" class="space-y-6">
+        <p class="text-gray-600 text-sm text-center">
+          Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.
+        </p>
+
+        <p-floatlabel class="w-full" variant="on">
+          <p-iconfield>
+            <p-inputicon class="pi pi-envelope"/>
+            <input autocomplete="off" class="w-full text-lg py-3" id="email" pInputText type="email"/>
+          </p-iconfield>
+          <label for="email">Correo electrónico</label>
+        </p-floatlabel>
+
+        <div class="text-right mb-0">
+          <a (click)="toggleForgotPassword()"
+             class="text-color font-medium transition-colors duration-200 cursor-pointer">
+            Volver al inicio de sesión
+          </a>
+        </div>
+      </div>
+
+      <ng-template pTemplate="footer">
+        <div class="flex justify-center mt-8 text-color">
+          <p-button
+            (click)="isForgotPassword ? onRecover() : onLogin()"
+            [label]="isForgotPassword ? 'Enviar enlace' : 'Iniciar sesión'"
+            [style]="{background: '#00386d' }"
+            class="w-full py-3 text-lg text-color"
+            severity="primary"
+            styleClass="w-full text-color"/>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>

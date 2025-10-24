@@ -1,4 +1,13 @@
+@import "primeicons/primeicons.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* You can add global styles to this file, and also import other style files */
+
+
+.p-menubar{
+  margin: 0 auto;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  background: #00386d !important;
+}
+
