@@ -1,0 +1,17 @@
+.card {
+  position: fixed;
+  top: 3.56rem;
+  left: 0;
+  height: 100vh;
+  width: 240px;
+  background-color: #fff;
+  overflow-y: auto;
+  transition: width 0.3s ease;
+  z-index: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.collapsed {
+  width: 0;
+  overflow: hidden;
+}

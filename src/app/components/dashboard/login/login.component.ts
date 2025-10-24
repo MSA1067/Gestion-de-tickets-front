@@ -1,0 +1,45 @@
+import { Component } from '@angular/core';
+import {PrimeNgModule} from '../../../shared/module/primeNg/prime-ng.module';
+import {NgOptimizedImage} from '@angular/common';
+import {Router, RouterLink} from '@angular/router';
+import {MessageService} from 'primeng/api';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [PrimeNgModule],
+  providers: [MessageService],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
+})
+export class LoginComponent {
+
+  isForgotPassword = false;
+
+  constructor(private router: Router, private message: MessageService) {}
+
+  toggleForgotPassword() {
+    this.isForgotPassword = !this.isForgotPassword;
+  }
+
+  onLogin() {
+    this.message.add({
+      severity: 'success',
+      summary: 'Inicio de sesión exitoso',
+      detail: 'Usuario logueado correctamente'
+    });
+
+    setTimeout(() => {
+      this.router.navigate(['/ca-admin']);
+    }, 1000);
+  }
+
+  onRecover() {
+    this.message.add({
+      severity: 'info',
+      summary: 'Correo enviado',
+      detail: 'Revisa tu bandeja para restablecer la contraseña'
+    });
+  }
+
+}
