@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .p-menubar{
   margin: 0 auto;
   border-top-left-radius: 0 !important;
