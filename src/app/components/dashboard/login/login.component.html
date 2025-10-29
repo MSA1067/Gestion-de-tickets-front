@@ -70,6 +70,22 @@
             class="w-full py-3 text-lg text-color"
             severity="primary"
             styleClass="w-full text-color"/>
+
+          <p-button
+            (click)="onLoginSupport()"
+            [label]="'Iniciar sesión soporte'"
+            [style]="{background: '#00386d' }"
+            class="w-full py-3 text-lg text-color"
+            severity="primary"
+            styleClass="w-full text-color"/>
+
+          <p-button
+            (click)="onLoginUser()"
+            [label]="'Iniciar sesión usuario'"
+            [style]="{background: '#00386d' }"
+            class="w-full py-3 text-lg text-color"
+            severity="primary"
+            styleClass="w-full text-color"/>
         </div>
       </ng-template>
     </p-card>
