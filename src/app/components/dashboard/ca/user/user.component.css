@@ -1,12 +1,10 @@
-
 .container{
   width: 100%;
   margin-left: 15.56rem;
-  transition: 0.3s ease;
+  transition: width 0.3s ease;
 }
 
 .collapsed {
-  transition: 0.3s ease;
   margin-left: 2rem;
 }
 
