@@ -26,7 +26,12 @@ export class LoginComponent {
     this.messageSuccess()
 
     setTimeout(() => {
-      this.router.navigate(['/ca-admin']);
+      this.router.navigate(['/ca-admin'], {
+        state:
+        {
+          role: 'Admin'
+        }
+      });
     }, 1000);
   }
 
@@ -34,7 +39,12 @@ export class LoginComponent {
     this.messageSuccess()
 
     setTimeout(() => {
-      this.router.navigate(['/ca-support']);
+      this.router.navigate(['/ca-support'], {
+        state:
+        {
+          role: 'Soporte'
+        }
+      });
     }, 1000);
   }
 
@@ -42,7 +52,12 @@ export class LoginComponent {
     this.messageSuccess()
 
     setTimeout(() => {
-      this.router.navigate(['/ca-user']);
+      this.router.navigate(['/ca-user'], {
+        state:
+        {
+          role: 'Usuario'
+        }
+      });
     }, 1000);
   }
 
