@@ -23,16 +23,37 @@ export class LoginComponent {
   }
 
   onLogin() {
-    this.message.add({
-      severity: 'success',
-      summary: 'Inicio de sesión exitoso',
-      detail: 'Usuario logueado correctamente'
-    });
+    this.messageSuccess()
 
     setTimeout(() => {
       this.router.navigate(['/ca-admin']);
     }, 1000);
   }
+
+  onLoginSupport() {
+    this.messageSuccess()
+
+    setTimeout(() => {
+      this.router.navigate(['/ca-support']);
+    }, 1000);
+  }
+
+  onLoginUser() {
+    this.messageSuccess()
+
+    setTimeout(() => {
+      this.router.navigate(['/ca-user']);
+    }, 1000);
+  }
+
+  messageSuccess() {
+    this.message.add({
+      severity: 'success',
+      summary: 'Inicio de sesión exitoso',
+      detail: 'Usuario logueado correctamente'
+    });
+  }
+
 
   onRecover() {
     this.message.add({
