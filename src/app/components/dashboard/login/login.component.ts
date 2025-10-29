@@ -3,11 +3,12 @@ import {PrimeNgModule} from '../../../shared/module/primeNg/prime-ng.module';
 import {NgOptimizedImage} from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
 import {MessageService} from 'primeng/api';
+import {AutoFocus} from 'primeng/autofocus';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [PrimeNgModule],
+  imports: [PrimeNgModule, AutoFocus],
   providers: [MessageService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
