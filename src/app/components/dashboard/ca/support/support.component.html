@@ -2,7 +2,9 @@
 
 <div class="flex m-0 p-0">
 
-  <app-sider-menu></app-sider-menu>
+  <app-sider-menu
+    [role]="this.role"
+  ></app-sider-menu>
 
   <div class="container mt-3"  [ngClass]="{collapsed: isCollapsed}">
     <router-outlet></router-outlet>

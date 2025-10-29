@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
@@ -18,10 +18,13 @@ import {NavigationEnd, Router, RouterLink} from '@angular/router';
 })
 export class SiderMenuComponent implements OnInit, OnDestroy {
 
+  @Input() role: any;
+
   items: MenuItem[] | undefined;
   isCollapsed = false;
   private sub!: Subscription;
   private routerSub!: Subscription;
+  user: { name: string; role: any; } | undefined;
 
   constructor(private menuService: MenuService, private router: Router) {}
 
@@ -37,6 +40,8 @@ export class SiderMenuComponent implements OnInit, OnDestroy {
       });
 
     this.loadMenuByRoute();
+
+    this.user = {name: 'Yoseph Ferney', role: this.role}
   }
 
   ngOnDestroy() {
