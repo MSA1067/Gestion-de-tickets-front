@@ -1,0 +1,16 @@
+.font-size{
+  font-size: 1.4rem;
+  color: #71717a;
+  font-weight: 700;
+}
+
+.card{
+  margin-top: 3rem;
+  padding: 1rem;
+}
+
+.color-edit{
+  color: #7138c6;
+  text-decoration: underline;
+  cursor: pointer;
+}

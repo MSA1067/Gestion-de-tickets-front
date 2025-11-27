@@ -5,7 +5,7 @@ import { BadgeModule } from 'primeng/badge';
 import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
 import {NgClass, NgIf} from '@angular/common';
-import {MenuService} from '../../service/menu-service/menu.service';
+import {MenuService} from '../../../service/menu-service/menu.service';
 import {filter, Subscription} from 'rxjs';
 import {NavigationEnd, Router, RouterLink} from '@angular/router';
 
