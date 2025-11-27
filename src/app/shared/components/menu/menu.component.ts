@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
-import {PrimeNgModule} from '../module/primeNg/prime-ng.module';
 import { Router} from '@angular/router';
-import {MenuService} from '../../service/menu-service/menu.service';
+import {PrimeNgModule} from '../../module/primeNg/prime-ng.module';
+import {MenuService} from '../../../service/menu-service/menu.service';
 
 @Component({
   selector: 'app-menu',

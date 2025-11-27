@@ -19,7 +19,7 @@
         <p-floatlabel class="w-full" variant="on">
           <p-iconfield>
             <p-inputicon class="pi pi-user"/>
-            <input [pAutoFocus]="true" autocomplete="off" class="w-full text-lg py-3" id="username" pInputText/>
+            <input [pAutoFocus]="true" autocomplete="off" class="w-full text-lg py-3" id="username" [(ngModel)]="username" pInputText/>
           </p-iconfield>
           <label for="username">Usuario</label>
         </p-floatlabel>
@@ -27,7 +27,7 @@
         <p-floatlabel class="w-full" variant="on">
           <p-iconfield>
             <p-inputicon class="pi pi-lock"/>
-            <input autocomplete="off" class="w-full text-lg py-3" id="password" pInputText type="password"/>
+            <input autocomplete="off" class="w-full text-lg py-3" id="password" pInputText [(ngModel)]="password" type="password"/>
           </p-iconfield>
           <label for="password">Contraseña</label>
         </p-floatlabel>
@@ -66,22 +66,6 @@
           <p-button
             (click)="isForgotPassword ? onRecover() : onLogin()"
             [label]="isForgotPassword ? 'Enviar enlace' : 'Iniciar sesión'"
-            [style]="{background: '#00386d' }"
-            class="w-full py-3 text-lg text-color"
-            severity="primary"
-            styleClass="w-full text-color"/>
-
-          <p-button
-            (click)="onLoginSupport()"
-            [label]="'Iniciar sesión soporte'"
-            [style]="{background: '#00386d' }"
-            class="w-full py-3 text-lg text-color"
-            severity="primary"
-            styleClass="w-full text-color"/>
-
-          <p-button
-            (click)="onLoginUser()"
-            [label]="'Iniciar sesión usuario'"
             [style]="{background: '#00386d' }"
             class="w-full py-3 text-lg text-color"
             severity="primary"

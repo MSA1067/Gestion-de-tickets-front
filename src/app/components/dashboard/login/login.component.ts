@@ -4,6 +4,7 @@ import {NgOptimizedImage} from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
 import {MessageService} from 'primeng/api';
 import {AutoFocus} from 'primeng/autofocus';
+import {LoginService} from '../../../service/login/login.service';
 
 @Component({
   selector: 'app-login',
@@ -16,51 +17,51 @@ import {AutoFocus} from 'primeng/autofocus';
 export class LoginComponent {
 
   isForgotPassword = false;
+  username = '';
+  password = '';
 
-  constructor(private router: Router, private message: MessageService) {}
+  constructor(
+    private router: Router,
+    private message: MessageService,
+    private auth : LoginService
+  ) {}
 
   toggleForgotPassword() {
     this.isForgotPassword = !this.isForgotPassword;
   }
 
   onLogin() {
-    this.messageSuccess()
 
-    setTimeout(() => {
-      this.router.navigate(['/ca-admin'], {
-        state:
-        {
-          role: 'Admin'
-        }
-      });
-    }, 1000);
+    this.auth.login(this.username, this.password).subscribe({
+      next: () => {
+        this.auth.loadUser().subscribe((user: any) => {
+
+          const role = user?.role;
+          console.log(role)
+
+          this.auth.setRole(role);
+
+          this.messageSuccess();
+
+          setTimeout(() => {
+            if (role === 'ROLE_ADMIN') this.router.navigate(['/ca-admin']);
+            else if (role === 'ROLE_SUPPORT') this.router.navigate(['/ca-support']);
+            else if (role === 'ROLE_USER') this.router.navigate(['/ca-user']);
+          }, 700);
+
+        });
+      },
+
+      error: () => {
+        this.message.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Credenciales incorrectas'
+        });
+      }
+    })
   }
 
-  onLoginSupport() {
-    this.messageSuccess()
-
-    setTimeout(() => {
-      this.router.navigate(['/ca-support'], {
-        state:
-        {
-          role: 'Soporte'
-        }
-      });
-    }, 1000);
-  }
-
-  onLoginUser() {
-    this.messageSuccess()
-
-    setTimeout(() => {
-      this.router.navigate(['/ca-user'], {
-        state:
-        {
-          role: 'Usuario'
-        }
-      });
-    }, 1000);
-  }
 
   messageSuccess() {
     this.message.add({

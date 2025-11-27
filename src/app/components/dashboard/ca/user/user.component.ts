@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuComponent } from "../../../../shared/menu/menu.component";
 import { Router, RouterOutlet } from "@angular/router";
-import { SiderMenuComponent } from "../../../../shared/sider-menu/sider-menu.component";
+import { SiderMenuComponent } from "../../../../shared/components/sider-menu/sider-menu.component";
 import { Subscription } from 'rxjs';
 import { MenuService } from '../../../../service/menu-service/menu.service';
 import { NgClass } from '@angular/common';
+import {MenuComponent} from '../../../../shared/components/menu/menu.component';
 
 @Component({
   selector: 'app-user',
