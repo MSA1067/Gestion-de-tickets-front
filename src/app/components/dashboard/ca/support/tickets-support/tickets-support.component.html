@@ -1,1 +1,230 @@
-<p>tickets-support works!</p>
+<p-tabView [(activeIndex)]="activeTabIndex"
+           (onChange)="activeTab = $event.index === 0 ? 'activos' : 'abiertos'">
+
+  <p-tabPanel header="Tickets Activos"></p-tabPanel>
+  <p-tabPanel header="Tickets Abiertos"></p-tabPanel>
+
+</p-tabView>
+
+<!-- FILTROS GENERALES -->
+<div class="filters flex gap-3 my-3">
+  <input pInputText type="text" placeholder="Buscar por ID, asunto o descripción..." />
+
+  <p-dropdown
+    [options]="estados"
+    placeholder="Todos los estados"
+    [style]="{ width: '200px' }">
+  </p-dropdown>
+
+  <p-dropdown
+    [options]="prioridades"
+    placeholder="Todas las prioridades"
+    [style]="{ width: '200px' }">
+  </p-dropdown>
+</div>
+
+<!-- ======================================================
+                    TICKETS ACTIVOS
+======================================================= -->
+<div *ngIf="activeTab === 'activos'">
+  <p-table [value]="ticketsActivos" class="p-datatable-sm">
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Asunto</th>
+        <th>Descripción</th>
+        <th>Categoría</th>
+        <th>Prioridad</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-t>
+      <tr>
+        <td>{{ t.id }}</td>
+        <td>{{ t.asunto }}</td>
+        <td>{{ t.descripcion }}</td>
+        <td>{{ t.categoria }}</td>
+
+        <td>
+          <span class="badge" [ngClass]="t.prioridad.toLowerCase()">
+            {{ t.prioridad }}
+          </span>
+        </td>
+
+        <td>
+          <span class="badge estado">
+            {{ t.estado }}
+          </span>
+        </td>
+
+        <td>{{ t.fecha }}</td>
+
+        <td>
+          <p-button
+                  icon="pi pi-pencil"
+                  class="p-button-sm p-button-info"
+                  (click)="openModal(t)"
+          >
+          </p-button>
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+</div>
+
+<!-- ======================================================
+                    TICKETS ABIERTOS
+======================================================= -->
+<div *ngIf="activeTab === 'abiertos'">
+
+  <p-table
+    [value]="ticketsAbiertos"
+    [(selection)]="selectedTickets"
+    selectionMode="multiple"
+    dataKey="id"
+    class="p-datatable-sm">
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 40px">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Asunto</th>
+        <th>Descripción</th>
+        <th>Categoría</th>
+        <th>Departamento</th>
+        <th>Prioridad</th>
+        <th>Fecha</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-t>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="t"></p-tableCheckbox>
+        </td>
+
+        <td>{{ t.id }}</td>
+
+        <td>
+          <div class="user-cell flex gap-2 align-items-center">
+            <div class="avatar">
+              {{ t.usuario[0] }}{{ t.usuario.split(' ')[1][0] }}
+            </div>
+            <div>
+              <strong>{{ t.usuario }}</strong><br>
+              <small>{{ t.correo }}</small>
+            </div>
+          </div>
+        </td>
+
+        <td>{{ t.asunto }}</td>
+        <td>{{ t.descripcion }}</td>
+        <td>{{ t.categoria }}</td>
+        <td>{{ t.departamento }}</td>
+
+        <td>
+          <span class="badge" [ngClass]="t.prioridad.toLowerCase()">
+            {{ t.prioridad }}
+          </span>
+        </td>
+
+        <td>{{ t.fecha }}</td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+
+  <p-button
+          label="Asignar seleccionados"
+          icon="pi pi-user-plus"
+          class="mt-5 justify-end gap-2"
+          styleClass="mt-5 justify-end"
+          [disabled]="!selectedTickets?.length"
+          (click)="asignarSeleccionados()">
+  </p-button>
+
+</div>
+
+<p-dialog
+  header="Detalle del Ticket"
+  [(visible)]="modalVisible"
+  [modal]="true"
+  [style]="{ width: '520px' }"
+  [draggable]="false"
+  [resizable]="false"
+  [breakpoints]="{ '960px': '95vw' }"
+  [closable]="false"
+  contentStyleClass="ticket-modal-content"
+>
+  <div *ngIf="selectedTicket" class="modal-body">
+
+    <!-- ID (simple, arriba) -->
+    <div class="field-block">
+      <label class="field-label">ID del Ticket</label>
+      <div class="ticket-id">{{ selectedTicket.id }}</div>
+    </div>
+
+    <!-- Asunto (full width) -->
+    <div class="field-block">
+      <label class="field-label">Asunto</label>
+      <input pInputText [(ngModel)]="selectedTicket.asunto" class="full-width" />
+    </div>
+
+    <!-- Descripción (full width) -->
+    <div class="field-block">
+      <label class="field-label">Descripción</label>
+      <textarea
+        pTextarea
+        [(ngModel)]="selectedTicket.descripcion"
+        rows="5"
+        class="full-width no-resize"
+      ></textarea>
+    </div>
+
+    <!-- Grupo: categoría + prioridad (RESPONSIVE: 1 col mobile, 2 col desktop) -->
+    <div class="modal-2cols">
+      <div class="field-block">
+        <label class="field-label">Categoría</label>
+        <input pInputText [(ngModel)]="selectedTicket.categoria" class="full-width" />
+      </div>
+
+      <div class="field-block">
+        <label class="field-label">Prioridad</label>
+        <p-dropdown
+          [options]="prioridades"
+          [(ngModel)]="selectedTicket.prioridad"
+          placeholder="Seleccionar"
+          class="full-width"
+        ></p-dropdown>
+      </div>
+    </div>
+
+    <!-- Estado (full width) -->
+    <div class="field-block">
+      <label class="field-label">Estado</label>
+      <p-dropdown
+        [options]="estados"
+        [(ngModel)]="selectedTicket.estado"
+        placeholder="Seleccionar"
+        class="full-width"
+      ></p-dropdown>
+    </div>
+
+    <!-- Footer: botones en una línea a la derecha -->
+    <div class="modal-footer">
+      <p-button label="Cerrar" class="p-button-text" (click)="closeModal()"></p-button>
+      <p-button label="Guardar Cambios" (click)="saveTicket()"></p-button>
+    </div>
+
+  </div>
+</p-dialog>
+
+

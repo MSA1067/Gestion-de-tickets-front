@@ -1,1 +1,52 @@
-<p>profile-user works!</p>
+<div class="ticket-container">
+
+  <h2>Nueva Solicitud de Soporte</h2>
+  <p class="subtitle">
+    Completa el formulario para crear un nuevo ticket. Nuestro equipo de soporte lo atenderá a la brevedad.
+  </p>
+
+  <div class="form-group">
+    <label>Asunto <span class="req">*</span></label>
+    <input pInputText placeholder="Escribe el asunto de tu solicitud" class="w-full" />
+  </div>
+
+  <div class="form-group">
+    <label>Descripción <span class="req">*</span></label>
+    <textarea pInputTextarea rows="4" class="w-full"
+              placeholder="Describe detalladamente tu problema o solicitud..."></textarea>
+    <p class="note">Incluye toda la información relevante para que podamos ayudarte mejor</p>
+  </div>
+
+  <div class="two-columns">
+    <div class="form-group">
+      <label>Categoría <span class="req">*</span></label>
+      <p-dropdown
+        [options]="categorias"
+        placeholder="Selecciona una categoría"
+        class="w-full">
+      </p-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label>Prioridad <span class="req">*</span></label>
+      <p-dropdown
+        [options]="prioridades"
+        placeholder="Selecciona la prioridad"
+        class="w-full">
+      </p-dropdown>
+    </div>
+  </div>
+
+  <button pButton
+          label="Enviar Solicitud"
+          icon="pi pi-send"
+          class="submit-btn w-full">
+  </button>
+
+  <div class="info-box">
+    <i class="pi pi-clock"></i>
+    <span><strong>Tiempo de respuesta estimado:</strong> 2–4 horas en horario laboral</span>
+    <p class="info-small">Recibirás una notificación cuando tu ticket sea asignado a un agente de soporte</p>
+  </div>
+
+</div>

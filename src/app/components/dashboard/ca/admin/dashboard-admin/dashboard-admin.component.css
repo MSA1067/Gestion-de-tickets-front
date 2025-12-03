@@ -1,0 +1,27 @@
+.p-card-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.p-datatable-sm td,
+.p-datatable-sm th {
+  padding: 0.6rem !important;
+}
+
+.kpi-card {
+  @apply w-64 shadow-sm border-l-4 rounded-xl;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.kpi-content {
+  @apply flex items-center gap-4 py-4;
+}
+
+.kpi-number {
+  @apply text-3xl font-bold;
+}
+
+.kpi-label {
+  @apply text-gray-600 text-sm;
+}

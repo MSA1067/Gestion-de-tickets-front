@@ -1,30 +1,40 @@
-import {Component, OnInit} from '@angular/core';
-import {PrimeNgModule} from '../../../../../shared/module/primeNg/prime-ng.module';
-import {AutoCompleteCompleteEvent} from 'primeng/autocomplete';
-import {UsersService} from '../../../../../service/users/users.service';
+import { Component } from '@angular/core';
+import {AutoComplete} from "primeng/autocomplete";
+import {Button} from "primeng/button";
+import {Card} from "primeng/card";
+import {FloatLabel} from "primeng/floatlabel";
+import {MultiSelect} from "primeng/multiselect";
+import {PrimeTemplate} from "primeng/api";
+import {TableModule} from "primeng/table";
 import {
   UserDatum,
   UserPagination,
   UserPaginationDatum,
   UserSummary
-} from '../../../../../shared/interfaces/user.interface';
-import {RouterOutlet} from '@angular/router';
-
-interface UserOption {
-  id: number;
-  name: string;
-  email: string;
-}
+} from '../../../../../../shared/interfaces/user.interface';
+import {UsersService} from '../../../../../../service/users/users.service';
+import {PrimeNgModule} from '../../../../../../shared/module/primeNg/prime-ng.module';
+import {Router} from '@angular/router';
+import {CreateManageUsersComponent} from '../create-manage-users/create-manage-users.component';
+import {EditManageUsersComponent} from '../edit-manage-users/edit-manage-users.component';
 
 @Component({
-  selector: 'app-manage-users',
+  selector: 'app-search-manage-users',
   standalone: true,
-  imports: [PrimeNgModule, RouterOutlet],
-  templateUrl: './manage-users.component.html',
-  styleUrl: './manage-users.component.css'
+  imports: [
+    PrimeNgModule,
+    CreateManageUsersComponent,
+    EditManageUsersComponent
+
+  ],
+  templateUrl: './search-manage-users.component.html',
+  styleUrl: './search-manage-users.component.css'
 })
-export class ManageUsersComponent implements OnInit {
+export class SearchManageUsersComponent {
+
   loading = false;
+  visible: boolean = false;
+  visibleEdit: boolean = false;
 
   usersSummary: UserDatum[] = [];
 
@@ -52,7 +62,8 @@ export class ManageUsersComponent implements OnInit {
   currentPage = 1;
 
   constructor(
-    private usersService: UsersService
+    private usersService: UsersService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -123,5 +134,48 @@ export class ManageUsersComponent implements OnInit {
     this.selectedRole = null;
     this.loadUsers();
   }
+
+  onCloseModal() {
+    this.visible = false;
+  }
+
+  onSaveAndRefresh() {
+    this.visible = false;
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
+  }
+
+  onCloseModalEdit() {
+    this.visibleEdit = false;
+  }
+
+  onSaveAndRefreshEdit() {
+    this.visibleEdit = false;
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
+  }
+
+  toEdit(id: number) {
+    this.router.navigate(['/ca-admin/manage-users/detail-users'] , {
+      state: { userId: id }
+    });
+  }
+
+  showDialog() {
+    this.visible = true;
+  }
+
+  selectedUser: UserPaginationDatum | null = null;
+
+  showDialogEdit(user: UserPaginationDatum) {
+    console.log("🟦 Padre: Usuario recibido para editar:", user);
+    this.selectedUser = user;
+    this.visibleEdit = true;
+  }
+
 
 }

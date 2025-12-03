@@ -1,0 +1,110 @@
+<p-toast></p-toast>
+
+<p-card class="card grid">
+
+  <div class="row-auto flex flex-wrap justify-center gap-4">
+
+    <div class="col-12 md:col-4">
+      <p-floatlabel variant="on" class="w-full">
+        <p-iconfield>
+          <p-inputicon class="pi pi-user" />
+          <input
+            pInputText
+            id="fullName"
+            class="w-full text-base md:text-lg py-3"
+            autocomplete="off"
+            [(ngModel)]="form.fullName"
+          />
+        </p-iconfield>
+        <label for="fullName" class="text-sm md:text-base">Nombre completo</label>
+      </p-floatlabel>
+    </div>
+
+    <!-- Usuario -->
+    <div class="col-12 md:col-4">
+      <p-floatlabel variant="on" class="w-full">
+        <p-iconfield>
+          <p-inputicon class="pi pi-user" />
+          <input
+            pInputText
+            id="username"
+            class="w-full text-base md:text-lg py-3"
+            autocomplete="off"
+            [(ngModel)]="form.username"
+          />
+        </p-iconfield>
+        <label for="username" class="text-sm md:text-base">Usuario</label>
+      </p-floatlabel>
+    </div>
+
+    <div class="col-12 md:col-4">
+      <p-floatlabel variant="on" class="w-full">
+        <p-password
+          id="password"
+          [(ngModel)]="form.password"
+          class="w-full"
+          [toggleMask]="true"
+          inputStyleClass="w-full text-base md:text-lg py-3"
+          promptLabel="Ingresa tu contraseña" weakLabel="Debil" mediumLabel="Moderado" strongLabel="Fuerte"
+        ></p-password>
+        <label for="password" class="text-sm md:text-base">Contraseña</label>
+      </p-floatlabel>
+    </div>
+
+    <div class="col-12 md:col-4">
+      <p-floatlabel variant="on" class="w-full">
+        <p-password
+          id="confirmPassword"
+          [(ngModel)]="form.confirmPassword"
+          class="w-full"
+          [toggleMask]="true"
+          inputStyleClass="w-full text-base md:text-lg py-3"
+          promptLabel="Ingresa tu contraseña"
+          weakLabel="Debil"
+          mediumLabel="Moderado"
+          strongLabel="Fuerte"
+        ></p-password>
+        <label for="confirmPassword" class="text-sm md:text-base">Confirmar contraseña</label>
+      </p-floatlabel>
+    </div>
+
+    <div class="col-12 md:col-4">
+      <p-floatlabel variant="on" class="w-full">
+        <p-iconfield>
+          <p-inputicon class="pi pi-envelope" />
+          <input
+            pInputText
+            id="email"
+            class="w-full text-base md:text-lg py-3"
+            autocomplete="off"
+            [(ngModel)]="form.email"
+          />
+        </p-iconfield>
+        <label for="email" class="text-sm md:text-base">Email</label>
+      </p-floatlabel>
+    </div>
+
+    <!-- Rol -->
+    <div class="col-12 md:col-4">
+
+      <p-floatlabel class="w-full md:w-56 " variant="on">
+        <p-select
+          [options]="roles"
+          optionLabel="name"
+          optionValue="value"
+          [(ngModel)]="form.role"
+          styleClass="w-full h-11"
+        />
+        <label for="on_label">Rol</label>
+      </p-floatlabel>
+
+    </div>
+
+  </div>
+</p-card>
+
+<div class="flex justify-end my-4 pb-4 gap-3">
+  <p-button label="Cancelar" severity="secondary" (click)="toCancel()" />
+  <p-button label="Guardar" severity="primary" (click)="save()" />
+</div>
+

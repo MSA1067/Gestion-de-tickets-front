@@ -1,1 +1,133 @@
-<p>dashboard-admin works!</p>
+<div class="h-[calc(100vh-80px)] overflow-y-auto pr-3">
+  <div class="flex flex-wrap gap-4 justify-around mb-6">
+
+    <!-- Tickets Totales -->
+    <p-card class=" w-56 shadow-sm border-l-4 border-blue-600">
+      <div class="flex items-center gap-2 py-4">
+        <i class="pi pi-chart-line text-blue-600 text-4xl"></i>
+        <div>
+          <span class="text-3xl font-bold text-blue-700">{{ kpis.total }}</span>
+          <p class="text-gray-600 text-sm">Tickets totales</p>
+        </div>
+      </div>
+    </p-card>
+
+    <!-- Tickets Activos -->
+    <p-card class="w-56 shadow-sm border-l-4 border-green-600">
+      <div class="flex items-center gap-2 py-4">
+        <i class="pi pi-clock text-green-600 text-4xl"></i>
+        <div>
+          <span class="text-3xl font-bold text-green-700">{{ kpis.activos }}</span>
+          <p class="text-gray-600 text-sm">Tickets activos</p>
+        </div>
+      </div>
+    </p-card>
+
+    <!-- Tickets Cerrados -->
+    <p-card class="w-56 shadow-sm border-l-4 border-gray-600">
+      <div class="flex items-center gap-2 py-4">
+        <i class="pi pi-check text-gray-600 text-4xl"></i>
+        <div>
+          <span class="text-3xl font-bold text-gray-700">{{ kpis.cerrados }}</span>
+          <p class="text-gray-600 text-sm">Tickets cerrados</p>
+        </div>
+      </div>
+    </p-card>
+
+    <!-- Tickets Creados Hoy -->
+    <p-card class="w-56 shadow-sm border-l-4 border-purple-600">
+      <div class="flex items-center gap-2 py-4">
+        <i class="pi pi-plus-circle text-purple-600 text-4xl"></i>
+        <div>
+          <span class="text-3xl font-bold text-purple-700">{{ kpis.creadosHoy }}</span>
+          <p class="text-gray-600 text-sm">Tickets creados hoy</p>
+        </div>
+      </div>
+    </p-card>
+
+    <!-- Tickets Resueltos Hoy -->
+    <p-card class="w-56 shadow-sm border-l-4 border-yellow-500">
+      <div class="flex items-center gap-2 py-4">
+        <i class="pi pi-check-circle text-yellow-500 text-4xl"></i>
+        <div>
+          <span class="text-3xl font-bold text-yellow-600">{{ kpis.resueltosHoy }}</span>
+          <p class="text-gray-600 text-sm">Tickets resueltos hoy</p>
+        </div>
+      </div>
+    </p-card>
+
+  </div>
+
+
+  <!-- ===================== CHARTS ===================== -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
+
+    <!-- BARRAS -->
+    <p-card>
+      <ng-template pTemplate="header">
+        <h3 class="chart-title">Tickets por estado (mes actual)</h3>
+      </ng-template>
+
+      <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
+    </p-card>
+
+    <!-- TORTA -->
+    <p-card>
+      <ng-template pTemplate="header">
+        <h3 class="chart-title">Prioridad de tickets activos (mes)</h3>
+      </ng-template>
+
+      <p-chart type="pie" [data]="pieData" [options]="pieOptions"></p-chart>
+    </p-card>
+
+    <!-- LINEAS -->
+    <p-card>
+      <ng-template pTemplate="header">
+        <h3 class="chart-title">Crecimiento anual de tickets</h3>
+      </ng-template>
+
+      <p-chart type="line" [data]="lineData" [options]="lineOptions"></p-chart>
+    </p-card>
+
+  </div>
+
+  <!-- ===================== REPORT TABLE ===================== -->
+  <div class="mt-8">
+    <p-card>
+      <ng-template pTemplate="header">
+        <h3 class="chart-title">Reporte de tickets por usuario (último mes)</h3>
+      </ng-template>
+
+      <p-table [value]="userReport" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Usuario</th>
+            <th>Activos</th>
+            <th>En progreso</th>
+            <th>Cerrados</th>
+            <th>Total</th>
+            <th>Estado</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td>{{ row.user }}</td>
+            <td>{{ row.active }}</td>
+            <td>{{ row.inProgress }}</td>
+            <td>{{ row.closed }}</td>
+            <td>{{ row.total }}</td>
+            <td>
+              <p-tag
+                [value]="getLoadLabel(row)"
+                [severity]="getLoadSeverity(row)"
+                styleClass="p-tag-sm"
+              ></p-tag>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+
+</div>

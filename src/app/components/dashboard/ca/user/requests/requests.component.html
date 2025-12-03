@@ -1,1 +1,164 @@
-<p>requests works!</p>
+<p-tabView [(activeIndex)]="activeTabIndex" (onChange)="activeTab = $event.index === 0 ? 'activos' : 'abiertos'">
+  <p-tabPanel header="Tickets En proceso"></p-tabPanel>
+  <p-tabPanel header="Tickets Abiertos"></p-tabPanel>
+</p-tabView>
+
+<p-button
+  label="Crear ticket"
+  (click)="modalVisible = true">
+</p-button>
+
+
+<div class="filters">
+  <input pInputText type="text" placeholder="Buscar por ID, asunto o descripción..." />
+
+  <p-dropdown
+    [options]="estados" placeholder="Todos los estados" [style]="{ width: '200px' }">
+  </p-dropdown>
+
+  <p-dropdown
+    [options]="prioridades" placeholder="Todas las prioridades" [style]="{ width: '200px' }">
+  </p-dropdown>
+</div>
+
+
+<div *ngIf="activeTab === 'activos'">
+  <p-table [value]="ticketsActivos" class="p-datatable-sm">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Asunto</th>
+        <th>Descripción</th>
+        <th>Categoría</th>
+        <th>Prioridad</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-t>
+      <tr>
+        <td>{{ t.id }}</td>
+        <td>
+          <div class="user-cell">
+            <div class="avatar">{{ t.usuario[0] }}{{ t.usuario.split(' ')[1][0] }}</div>
+            <div>
+              <strong>{{ t.usuario }}</strong><br>
+              <small>{{ t.correo }}</small>
+            </div>
+          </div>
+        </td>
+        <td>{{ t.asunto }}</td>
+        <td>{{ t.descripcion }}</td>
+        <td>{{ t.categoria }}</td>
+
+        <td>
+          <span class="badge" [ngClass]="t.prioridad.toLowerCase()">
+            {{ t.prioridad }}
+          </span>
+        </td>
+
+        <td><span class="">{{ t.estado }}</span></td>
+
+        <td>{{ t.fecha }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- TICKETS ABIERTOS -->
+<div *ngIf="activeTab === 'abiertos'">
+  <p-table [value]="ticketsAbiertos">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Asunto</th>
+        <th>Descripción</th>
+        <th>Categoría</th>
+        <th>Prioridad</th>
+        <th>Fecha</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-t>
+      <tr>
+        <td>{{ t.id }}</td>
+        <td>{{ t.asunto }}</td>
+        <td>{{ t.descripcion }}</td>
+        <td>{{ t.categoria }}</td>
+
+        <td>
+          <span class="badge" [ngClass]="t.prioridad.toLowerCase()">
+            {{ t.prioridad }}
+          </span>
+        </td>
+
+        <td>{{ t.fecha }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog
+  header="Nueva Solicitud de Soporte"
+  [(visible)]="modalVisible"
+  [modal]="true"
+  [style]="{ width: '650px' }"
+  [breakpoints]="{ '960px': '95vw', '640px': '100vw' }"
+  [draggable]="false"
+  [resizable]="false">
+
+  <div class="ticket-container">
+
+    <p class="subtitle">
+      Completa el formulario para crear un nuevo ticket. Nuestro equipo lo atenderá a la brevedad.
+    </p>
+
+    <div class="form-group">
+      <label>Asunto <span class="req">*</span></label>
+      <input pInputText placeholder="Escribe el asunto de tu solicitud" class="w-full" />
+    </div>
+
+    <div class="form-group">
+      <label>Descripción <span class="req">*</span></label>
+      <textarea pTextarea rows="4" class="w-full"
+                placeholder="Describe detalladamente tu problema o solicitud..."></textarea>
+      <p class="note">Incluye toda la información relevante para que podamos ayudarte mejor</p>
+    </div>
+
+    <div class="two-columns">
+      <div class="form-group">
+        <label>Categoría <span class="req">*</span></label>
+        <p-dropdown
+          [options]="categorias"
+          placeholder="Selecciona una categoría"
+          class="w-full">
+        </p-dropdown>
+      </div>
+
+      <div class="form-group">
+        <label>Prioridad <span class="req">*</span></label>
+        <p-dropdown
+          [options]="prioridades"
+          placeholder="Selecciona la prioridad"
+          class="w-full">
+        </p-dropdown>
+      </div>
+    </div>
+
+    <p-button
+            label="Enviar Solicitud"
+            icon="pi pi-send"
+            class="submit-btn w-full">
+    </p-button>
+
+    <div class="info-box">
+      <i class="pi pi-clock"></i>
+      <span><strong>Tiempo de respuesta estimado:</strong> 2–4 horas en horario laboral</span>
+      <p class="info-small">Recibirás una notificación cuando tu ticket sea asignado a un agente de soporte</p>
+    </div>
+
+  </div>
+
+</p-dialog>
+

@@ -71,7 +71,6 @@ export class SiderMenuComponent implements OnInit, OnDestroy {
         items: [
           { label: 'Dashboard', icon: 'pi pi-home', route: 'dashboard' },
           { label: 'Administración de usuarios', icon: 'pi pi-id-card', route: 'manage-users' },
-          { label: 'Reportes', icon: 'pi pi-address-book', route: 'reports' },
         ]
       },
       this.getProfileSection()
@@ -85,7 +84,6 @@ export class SiderMenuComponent implements OnInit, OnDestroy {
         label: 'Soporte',
         items: [
           { label: 'Tickets', icon: 'pi pi-ticket', route: 'tickets' },
-          { label: 'Clientes', icon: 'pi pi-users', route: 'clients' },
         ]
       },
       this.getProfileSection()
@@ -98,7 +96,6 @@ export class SiderMenuComponent implements OnInit, OnDestroy {
       {
         label: 'Usuario',
         items: [
-          { label: 'Mi perfil', icon: 'pi pi-user', route: 'profile' },
           { label: 'Mis solicitudes', icon: 'pi pi-folder', route: 'requests' },
         ]
       },
@@ -110,7 +107,6 @@ export class SiderMenuComponent implements OnInit, OnDestroy {
     return {
       label: 'Profile',
       items: [
-        { label: 'Configuración', icon: 'pi pi-cog', route: 'settings' },
         { label: 'Cerrar sesión', icon: 'pi pi-sign-out', command: () => this.logout() }
       ]
     };

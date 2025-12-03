@@ -15,6 +15,7 @@ export interface UserPagination {
 }
 
 export interface UserPaginationDatum {
+  id:       number;
   username: string;
   name:     string;
   email:    string;

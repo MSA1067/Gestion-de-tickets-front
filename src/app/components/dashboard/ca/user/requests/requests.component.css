@@ -1,0 +1,314 @@
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.alta {
+  background: #d32f2f;
+}
+
+.media {
+  background: #1d1b1d;
+}
+
+.baja {
+  background: #c7ccd4;
+  color: #000;
+}
+
+.estado {
+  background: #000;
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.avatar {
+  background: #5a73e6;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+p-table {
+  margin-top: 15px;
+}
+
+/* ============================
+      Badges de prioridad
+==============================*/
+.badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.alta {
+  background: #e53935;
+}
+
+.media {
+  background: #fb8c00;
+}
+
+.baja {
+  background: #43a047;
+}
+
+
+/* ============================
+         Avatar
+==============================*/
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: #1976d2;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ============================
+        Filtros
+==============================*/
+.filters input {
+  width: 280px;
+}
+
+.filters {
+  margin-bottom: 10px;
+}
+
+/* ============================
+        Tablas
+==============================*/
+.p-table-sm,
+.p-datatable-sm .p-datatable-tbody > tr > td {
+  padding: 6px 10px !important;
+}
+
+tr:hover {
+  background: #f7f9fc;
+}
+
+/* ============================
+     Alineaciones
+==============================*/
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --- Contenido más limpio y espacioso --- */
+.ticket-modal-content {
+  padding: 1.5rem !important;
+  background: #f9fafb;
+  border-radius: 10px;
+}
+
+/* --- Bloques de campos --- */
+.field-block {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+
+.field-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+/* --- ID visual destacada --- */
+.ticket-id {
+  background: #eef2ff;
+  padding: .6rem .9rem;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #4338ca;
+  border-left: 4px solid #6366f1;
+}
+
+/* --- Layout mejorado para 2 columnas --- */
+.modal-2cols {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .modal-2cols {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Contenedor del contenido del dialog */
+.ticket-modal-content {
+  padding: 1.25rem !important;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+/* Cuerpo vertical del modal */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Bloques de campo (label + control) */
+.field-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Etiqueta */
+.field-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+/* ID destacado */
+.ticket-id {
+  display: inline-block;
+  background: #eef2ff;
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #4338ca;
+  border-left: 4px solid #6366f1;
+}
+
+/* Forzar inputs/dropdowns/textarea a ocupar 100% */
+.full-width,
+.ticket-modal-content .p-inputtext,
+.ticket-modal-content .p-dropdown,
+.ticket-modal-content .p-inputtextarea,
+.ticket-modal-content textarea {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* Evitar que el textarea muestre resize horizontal feo */
+.no-resize {
+  resize: vertical !important;
+}
+
+/* GRID responsive para las dos columnas */
+.modal-2cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Cuando el viewport es más ancho, usar 2 columnas */
+@media (min-width: 640px) {
+  .modal-2cols {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Footer con botones en línea a la derecha */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e6e6e6;
+}
+
+/* Opcional: mejorar aspecto de inputs dentro del modal */
+.ticket-modal-content .p-inputtext,
+.ticket-modal-content .p-dropdown .p-dropdown-label,
+.ticket-modal-content .p-inputtextarea {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+}
+
+.ticket-container {
+  padding: 5px 5px 20px;
+}
+
+.subtitle {
+  margin-top: -10px;
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 14.5px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+
+  label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .req {
+    color: red;
+  }
+
+  .note {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #888;
+  }
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+.info-box {
+  margin-top: 25px;
+  padding: 16px;
+  background: #f3f7ff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #2b4aaa;
+
+  i {
+    font-size: 20px;
+  }
+
+  .info-small {
+    font-size: 13px;
+    color: #6e82b7;
+  }
+}

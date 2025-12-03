@@ -34,6 +34,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { AccordionModule } from 'primeng/accordion';
 import {MenubarModule} from 'primeng/menubar';
 import {MenuItemContent} from 'primeng/menu';
+import {Password} from 'primeng/password';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import {MenuItemContent} from 'primeng/menu';
     ProgressBarModule,
     AccordionModule,
     MenubarModule,
-    MenuItemContent
+    MenuItemContent,
+    Password
   ],
   exports: [
     CommonModule,
@@ -111,6 +113,7 @@ import {MenuItemContent} from 'primeng/menu';
     AccordionModule,
     MenubarModule,
     MenuItemContent,
+    Password
   ]
 })
 export class PrimeNgModule {

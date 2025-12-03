@@ -53,4 +53,8 @@ export class UsersService {
       );
   }
 
+  createUser(body: any): Observable<any> {
+    return this.http.post(`${this.apiUsersUrl}`, body, {withCredentials: true});
+  }
+
 }
